@@ -19,14 +19,21 @@ class TrainValDataset(Dataset):
 
     def __getitem__(self, idx):
         file_name = self.mat_files[idx % self.file_num]
-        gt_file = file_name.split(' ')[1][:-1]
-        img_file = file_name.split(' ')[0]
+        #gt_file = file_name.split(' ')[1][:-1]
+        #img_file = file_name.split(' ')[0]
 
-        O = cv2.imread(img_file)
-        B = cv2.imread(gt_file)
+        a = cv2.imread(file_name)
+        #B = cv2.imread(gt_file)
 
-        O = Image.fromarray(O)
-        B = Image.fromarray(B)
+        s = a.shape
+        #print(s)
+        x = int(s[1]/2)
+        #print(x)
+        a1 = a[:,:x,:]
+        a2 = a[:,x:,:]       
+
+        O = Image.fromarray(a1)
+        B = Image.fromarray(a2)
 
         O,B = self.rc(O,B)
         O,B = np.array(O),np.array(B)
@@ -56,11 +63,25 @@ class TestDataset(Dataset):
     def __getitem__(self, idx):
         file_name = self.mat_files[idx % self.file_num]
 
-        gt_file = "." + file_name.split(' ')[1][:-1]
-        img_file = "." + file_name.split(' ')[0]
+        #gt_file = "." + file_name.split(' ')[1][:-1]
+        #img_file = "." + file_name.split(' ')[0]
         
-        O = cv2.imread(img_file)
-        B = cv2.imread(gt_file)
+        #O = cv2.imread(img_file)
+        #B = cv2.imread(gt_file)
+
+        a = cv2.imread(file_name)
+        #B = cv2.imread(gt_file)
+
+        s = a.shape
+        #print(s)
+        x = int(s[1]/2)
+        #print(x)
+        a1 = a[:,:x,:]
+        a2 = a[:,x:,:]       
+
+        O = Image.fromarray(a1)
+        B = Image.fromarray(a2)
+
 
         O = np.transpose(O, (2, 0, 1)).astype(np.float32) / 255.0 
         B = np.transpose(B, (2, 0, 1)).astype(np.float32) / 255.0 
