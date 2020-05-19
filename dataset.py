@@ -69,8 +69,9 @@ class TestDataset(Dataset):
         
         #O = cv2.imread(img_file)
         #B = cv2.imread(gt_file)
-
+        print(file_name)
         a = cv2.imread(file_name)
+        
         #B = cv2.imread(gt_file)
 
         s = a.shape
