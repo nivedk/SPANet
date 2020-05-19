@@ -12,5 +12,3 @@ a2 = a[:,x:,:]
 cv2.imwrite("a1.png", a1)
 cv2.imwrite("a2.png", a2)
 
-for i in range (1,600):
-    print("/"+str(i)+".jpg")
