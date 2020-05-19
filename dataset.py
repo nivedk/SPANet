@@ -23,6 +23,7 @@ class TrainValDataset(Dataset):
         #img_file = file_name.split(' ')[0]
 
         a = cv2.imread(file_name)
+        print(file_name)
         #B = cv2.imread(gt_file)
 
         s = a.shape
