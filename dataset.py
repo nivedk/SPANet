@@ -69,11 +69,15 @@ class TestDataset(Dataset):
         
         #O = cv2.imread(img_file)
         #B = cv2.imread(gt_file)
+        file_name = file_name[:-1]
         print(file_name)
+        print("hello")
         a = cv2.imread(file_name)
-        
+        #a = Image.open(file_name)
+        #a = np.array(a)
+        print(a.shape)
         #B = cv2.imread(gt_file)
-
+        print(type(a))
         s = a.shape
         #print(s)
         x = int(s[1]/2)
