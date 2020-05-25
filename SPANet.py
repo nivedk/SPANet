@@ -25,7 +25,7 @@ class Bottleneck(nn.Module):
         self.group1 = nn.Sequential(m)
         self.relu= nn.Sequential(nn.ReLU(True))
 
-    @staticmethod
+    
     def forward(self, x):
         out = self.group1(x) 
         return out
@@ -42,9 +42,9 @@ class Spacial_IRNN(nn.Module):
         self.up_weight.weight    = nn.Parameter(torch.tensor([[[[alpha]]]]*in_channels))
         self.down_weight.weight  = nn.Parameter(torch.tensor([[[[alpha]]]]*in_channels))
       
-    @staticmethod
+    
     def forward(self,input):
-        return irnn()(input,self.up_weight.weight,self.right_weight.weight,self.down_weight.weight,self.left_weight.weight, self.up_weight.bias,self.right_weight.bias,self.down_weight.bias,self.left_weight.bias)
+        return irnn.forward(self,input,self.up_weight.weight,self.right_weight.weight,self.down_weight.weight,self.left_weight.weight, self.up_weight.bias,self.right_weight.bias,self.down_weight.bias,self.left_weight.bias)
 
 
 
@@ -59,7 +59,7 @@ class Attention(nn.Module):
         self.conv3 = nn.Conv2d(self.out_channels,4,kernel_size=1,padding=0,stride=1)
         self.sigmod = nn.Sigmoid()
     
-    @staticmethod
+    
     def forward(self,x):
         out = self.conv1(x)
         out = self.relu1(out)
@@ -86,7 +86,7 @@ class SAM(nn.Module):
         self.conv_out = conv1x1(self.out_channels,1)
         self.sigmod = nn.Sigmoid()
     
-    @staticmethod
+    
     def forward(self,x):
         if self.attention:
             weight = self.attention_layer(x)
@@ -146,7 +146,7 @@ class SPANet(nn.Module):
         self.conv_out = nn.Sequential(
             conv3x3(32,3)
         )
-    @staticmethod
+    
     def forward(self, x):
 
         out = self.conv_in(x)

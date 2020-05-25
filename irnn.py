@@ -22,6 +22,7 @@ class irnn(torch.autograd.Function):
 		super(irnn, self).__init__()
 		
 
+	@staticmethod
 	def forward(self, input_feature, weight_up, weight_right, weight_down, weight_left, bias_up, bias_right, bias_down, bias_left):
 		
 
